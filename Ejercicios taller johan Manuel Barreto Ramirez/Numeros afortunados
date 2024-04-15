@@ -1,0 +1,67 @@
+#include <iostream>
+
+using namespace std;
+
+void calcularNumerosAfortunados (int n);
+void eliiminarElemento (int arreglo [], int n, int elementoEliminar);
+
+int main()
+{
+    int n = 1;
+    
+    while (n != 0){
+        cin >> n;
+        calcularNumerosAfortunados(n);
+    }
+    
+    return 0;
+}
+
+void calcularNumerosAfortunados (int n){
+    if (n != 0){
+        int arreglo [100];
+        
+        int nCopia = n;
+        
+        for (int i = 0; i < n; i++){
+            arreglo[i] = i + 1;
+        }
+        
+        int m = 2;
+        
+        while (m < n){
+            for (int i = 0; i < n; i = i + m){
+                eliiminarElemento(arreglo, n, arreglo[i]);
+                n--;
+            }
+            m++;
+        }
+        
+        for (int i = 0; i < n; i++){
+            for (int j = i; j < n; j++){
+                if (arreglo[j] > arreglo[i]){
+                    int aux = arreglo[i];
+                    arreglo[i] = arreglo[j];
+                    arreglo[j] = aux;
+                }
+            }
+        }
+        
+        cout << nCopia <<": ";
+        for (int i = 0; i < n; i++){
+            cout << arreglo[i] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void eliiminarElemento (int arreglo [], int n, int elementoEliminar){
+    for (int i = 0; i < n; i++){
+        if (arreglo[i] == elementoEliminar){
+            int pos = i;
+            for (int j = pos; j < n; j++){
+                arreglo[j] = arreglo[j+1];
+            }
+        }
+    }
+}
