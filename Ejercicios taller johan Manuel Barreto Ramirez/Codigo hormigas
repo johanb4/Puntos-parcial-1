@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+void hallar_tapa(int cortezas[], int n);
+
+int main()
+{
+    int n;
+    cout << "Ingrese la cantidad de elementos de la lista de cortezas: ";
+    cin >> n;
+
+    int cortezas[n];
+    cout << "Ingrese los valores de la lista de cortezas: ";
+    for (int i = 0; i < n; i++)
+    {
+        cin >> cortezas[i];
+    }
+
+    hallar_tapa(cortezas, n);
+
+    return 0;
+}
+
+void hallar_tapa(int cortezas[], int n)
+{
+    bool noestapa = true;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        int total_cortezas = 0;
+        for (int j = i + 1; j < n; j++)
+        {
+            total_cortezas += cortezas[j];
+        }
+
+        if (cortezas[i] >= total_cortezas)
+        {
+            cout << "SI " << i << endl;
+            noestapa = false;
+            break;
+        }
+
+        if (cortezas[i] < total_cortezas)
+        {
+            noestapa = true;
+        }
+    }
+
+    if (noestapa)
+    {
+        cout << "NO" << endl;
+    }
+}
