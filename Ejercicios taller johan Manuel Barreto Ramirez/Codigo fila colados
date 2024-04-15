@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+void sacarGente(int usuarios, int Ningresos[], int retiradoFila[], int &contador)
+{ 
+    for (int i = 0; i < usuarios; i++)
+    {
+        if (i < usuarios - 1 && Ningresos[i] > Ningresos[i + 1])
+        {
+            retiradoFila[contador] = Ningresos[i];
+            contador++;
+        }
+    }
+}
+
+int main()
+{
+    int usuarios, contador = 0;
+    cout << "Ingrese cantidad de usuarios en la fila: ";
+    cin >> usuarios;
+
+    int Ningresos[usuarios];
+    cout << "Ingrese los ingresos: ";
+    for (int i = 0; i < usuarios; i++)
+    {
+        cin >> Ningresos[i];
+    }
+
+    int retiradoFila[usuarios];
+    sacarGente(usuarios, Ningresos, retiradoFila, contador);
+
+    cout << "Cantidad de ingresos retirados: " << contador << endl;
+    cout << "Ingresos retirados: ";
+    for (int i = 0; i < contador; i++)
+    {
+        cout << retiradoFila[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
