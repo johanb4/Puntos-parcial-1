@@ -1,0 +1,55 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool estaEnArreglo(int arreglo[], int tamaño, int valor) {
+    for (int i = 0; i < tamaño; i++) {
+        if (arreglo[i] == valor) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int sumaCubo(int numeroN) {
+    int suma = 0;
+    while (numeroN > 0) {
+        int digito = numeroN % 10;
+        suma += pow(digito, 3);
+        numeroN /= 10;
+    }
+    return suma;
+}
+
+void cbinfinitos(int arregloCubinfinitos[], int contadorCifras) {
+    if (arregloCubinfinitos[contadorCifras] == 1) {
+        cout << "es cubinfinito" << endl;
+    } else {
+        cout << "no es cubinfinito" << endl;
+    }
+}
+
+int main() {
+    int numeroN;
+    cout << "Ingrese un número: ";
+    cin >> numeroN;
+    int contador = 0;
+    int arregloCubinfinitos[100]; 
+    arregloCubinfinitos[contador] = numeroN;
+    int valor = numeroN;
+    while (true) {
+        int siguienteValor = sumaCubo(valor);
+        if (estaEnArreglo(arregloCubinfinitos, contador + 1, siguienteValor)) {
+            break;
+        }
+        contador++;
+        arregloCubinfinitos[contador] = siguienteValor;
+        valor = siguienteValor;
+    }
+    for (int i = 0; i <= contador; i++) {
+        cout << arregloCubinfinitos[i] << " ";
+    }
+    cbinfinitos(arregloCubinfinitos, contador);
+    cout << endl;
+    return 0;
+}
